@@ -1,0 +1,28 @@
+<div class="timeline pt-10">
+  <h2 class="text-3xl  mb-4">Rover Tasks Timeline</h2>
+  <div class="timeline-container">
+    <div *ngFor="let task of tasks" class="rover-block">
+      
+      <!-- Datos descriptivos -->
+      <div class="task-info">
+        <strong>{{ task.roverName }}</strong><br />
+        Initialized at: {{ task.startsAt | date: 'yyyy-MM-dd \'at\' HH:mm' }}<br />
+        Scheduled Finished at: {{ getEndTime(task) | date: 'yyyy-MM-dd \'by\' HH:mm' }}
+      </div>
+
+      <!-- Línea de tiempo visual -->
+      <p>Task assigned: {{ task.taskType }}</p>
+
+      <div class="task-timeline">
+        <div
+          class="task-bar"
+          [ngClass]="getTaskClass(task)"
+          [style.left.%]="calculatePosition(task)"
+          [style.width.%]="calculateWidth(task)"
+        >
+        </div>
+      </div>
+<span>___________________________________________</span>
+    </div>
+  </div>
+</div>
